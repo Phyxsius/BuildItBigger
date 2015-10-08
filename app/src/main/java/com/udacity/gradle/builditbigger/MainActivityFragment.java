@@ -1,8 +1,10 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +51,13 @@ public class MainActivityFragment extends Fragment {
         return root;
     }
 
-    public void tellJoke(){
+    public void tellJoke() {
+        Jokes jokes = new Jokes();
+
+        new EndpointsAsyncTask().execute(new Pair<Context, String>(getActivity(), jokes.tellJoke()));
+    }
+
+    public void tellJokeByAndroidActivity(){
         Intent intent = new Intent(getActivity(), JokesUiActivity.class);
 
         Jokes jokes = new Jokes();
